@@ -67,7 +67,7 @@ class Integrate_Pardot_WPForms {
 		    $args['field_' . $field['id']] = $field['value'];
 		}
 
-		if( !empty( $url ) && !empty( $args ) )
+		if( !empty( $url ) && !empty( $args ) ) {
 		    $request = wp_remote_post( $url, array( 'body' => $args ) );
 		}
 
