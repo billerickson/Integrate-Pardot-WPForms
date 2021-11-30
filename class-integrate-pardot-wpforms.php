@@ -58,20 +58,32 @@ class Integrate_Pardot_WPForms {
     function send_data_to_pardot( $fields, $entry, $form_data, $entry_id ) {
 
 		$url = false;
-		if( !empty( $form_data['settings']['be_pardot_form_handler'] ) )
-		    $url = esc_url( $form_data['settings']['be_pardot_form_handler'] );
-
+		if ( ! empty( $form_data['settings']['be_pardot_form_handler'] ) ) {
+			$url = esc_url( $form_data['settings']['be_pardot_form_handler'] );
+		}
 
 		$args = array();
-		foreach( $fields as $field ) {
-		    $args['field_' . $field['id']] = $field['value'];
+		foreach ( $fields as $field ) {
+			$args[ 'field_' . $field['id'] ] = $field['value'];
 		}
 
-		if( !empty( $url ) && !empty( $args ) ) {
-		    $request = wp_remote_post( $url, array( 'body' => $args ) );
+		if ( ! empty( $url ) && ! empty( $args ) ) {
+			$request = wp_remote_post( $url, array( 'body' => $args ) );
+
+			if ( function_exists( 'wpforms_log' ) ) {
+				wpforms_log(
+					'Partdot Response',
+					$request,
+					[
+						'type'    => [ 'provider' ],
+						'parent'  => $entry_id,
+						'form_id' => $form_data['id'],
+					]
+				);
+			}
 		}
 
-    }
+	}
 
 }
 new Integrate_Pardot_WPForms;

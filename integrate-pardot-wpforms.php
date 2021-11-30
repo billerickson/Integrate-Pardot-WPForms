@@ -3,7 +3,7 @@
  * Plugin Name: Integrate Pardot and WPForms
  * Plugin URI:  https://www.billerickson.net/contact-form-integration/
  * Description: Send your form data from WPForms to Pardot
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Bill Erickson
  * Author URI:  https://www.billerickson.net
  * License:     GPLv2 or later
